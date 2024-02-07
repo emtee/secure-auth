@@ -1,0 +1,44 @@
+# syntax=docker/dockerfile:1
+
+### Stage 1: Builder ###
+FROM ruby:3.2.3-slim as Builder
+ARG BUNDLE_WITHOUT="production:test"
+ENV BUNDLE_WITHOUT=${BUNDLE_WITHOUT}
+
+# # Install dependencies required for gems installation
+# RUN apt-get update -qq && apt-get install -y build-essential libpq-dev git
+
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config
+
+
+# Prepare app directory
+WORKDIR /app
+
+# Installing gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+### Stage 2: Development ###
+FROM ruby:3.2.3-slim as Development
+ARG BUNDLE_WITHOUT="production:test"
+ENV BUNDLE_WITHOUT=${BUNDLE_WITHOUT}
+
+# Install runtime dependencies
+RUN apt-get update -qq && apt-get install -y libpq-dev
+
+# Copy gems from Builder stage
+COPY --from=Builder /usr/local/bundle/ /usr/local/bundle/
+
+# Copy app code
+WORKDIR /app
+COPY . .
+
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
+# Start the main process.
+CMD ["rails", "server", "-b", "0.0.0.0"]

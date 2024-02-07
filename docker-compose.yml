@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - bundle_data:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@db/${DB_NAME}
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  bundle_data:
