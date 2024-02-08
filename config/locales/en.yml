@@ -26,4 +26,10 @@ en:
               weak_password: "must include at least one lowercase letter, one uppercase letter, one digit, and one symbol, and be at least 8 characters long"
   registrations:
     create:
-      success: "You are now registered with Secure Auth. Please sign in to continue."
+      success: "You are now registered with Secure Auth. Please log in to continue."
+  sessions:
+    create:
+      success: "You have logged in successfully."
+      failure: "Invalid email or password."
+    destroy:
+      success: "You have been logged out!"

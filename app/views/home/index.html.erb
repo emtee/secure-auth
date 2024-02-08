@@ -1,0 +1,20 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      SecureAuth
+    </h1>
+    <p class="subtitle">
+      A robust two-factor authentication service
+    </p>
+  </div>
+</section>
+
+<% if user_signed_in? %>
+  <section class="hero is-primary">
+    <div class="container hero-body">
+      <p class="title">
+        Welcome, <%= current_user.email %>
+      </p>
+    </div>
+  </section>
+<% end %>
