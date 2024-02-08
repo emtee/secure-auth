@@ -8,7 +8,7 @@
         <div class="buttons">
           <% if user_signed_in? %>
             <%= link_to "Update Password", "#", class: "button is-light" %>
-            <%= button_to "Sign Out", "#", session_path, method: :delete, class: "button is-warning" %>
+            <%= button_to "Sign Out", session_path(current_user), method: :delete, class: "button is-warning" %>
           <% else %>
             <%= link_to new_registration_path, class: "button is-primary" do  %>
               <strong>Sign up</strong>

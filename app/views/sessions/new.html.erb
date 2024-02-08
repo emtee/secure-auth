@@ -1,0 +1,30 @@
+<section class="section">
+  <h1 class="title">Log In</h1>
+  <%= form_with model: @user, url: sessions_path do |form| %>
+    <div class="field">
+      <%= form.label :email, class: "label" %>
+      <div class="control">
+        <%= form.email_field :email, required: true, class: "input", placeholder: "Email" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :password, class: "label" %>
+      <div class="control">
+        <%= form.password_field :password, required: true, class: "input", placeholder: "Password" %>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <%= form.submit "Log in", class: "button is-link" %>
+      </div>
+      <div class="control">
+        <%= link_to "Cancel", root_path, class: "button is-link is-light" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="mt-2">
+    <%= link_to "Forgot your password?", new_password_path, class: "is-link" %>
+  </div>
+</section>

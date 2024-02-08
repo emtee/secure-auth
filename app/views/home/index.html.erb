@@ -8,3 +8,13 @@
     </p>
   </div>
 </section>
+
+<% if user_signed_in? %>
+  <section class="hero is-primary">
+    <div class="container hero-body">
+      <p class="title">
+        Welcome, <%= current_user.email %>
+      </p>
+    </div>
+  </section>
+<% end %>
