@@ -1,4 +1,6 @@
-# README
+# SecureAuth
+
+SecureAuth is a robust two-factor authentication service designed to enhance the security of user accounts. It provides an additional layer of security beyond just a password, making it significantly more challenging for unauthorized users to gain access to accounts. SecureAuth includes comprehensive features such as user registration, login with two-factor authentication, and account settings management, ensuring a secure yet user-friendly experience.
 
 ## Development Environment Setup
 
@@ -30,7 +32,7 @@ docker-compose run web rails db:create db:migrate
 
 ### Running Commands
 
-To run Rails or Rake commands, use `docker-compose run web`, followed by your command. For example:
+To run Rails or Rake commands, use `docker-compose run web` followed by your command. For example:
 
 ```
 docker-compose run web rails console
