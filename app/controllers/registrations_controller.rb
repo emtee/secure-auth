@@ -10,7 +10,7 @@ class RegistrationsController < ApplicationController
     if @user.save
       redirect_to root_path, notice: t(".success")
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

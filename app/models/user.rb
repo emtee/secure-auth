@@ -5,4 +5,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, email: true
   validates :password, password: true
+
+  # Always remove white spaces and downcase email address
+  normalizes :email, with: -> (email) { email.strip.downcase }
 end

@@ -1,33 +1,51 @@
-<h1>Create New Account</h1>
-<%= form_with model: @user, url: registrations_path do |form| %>
-  <% if @user.errors.any? %>
-    <div>
-      <h2>Errors:</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<section class="section">
+  <h1 class="title">Sign Up</h1>
+  <%= form_with model: @user, url: registrations_path do |form| %>
+    <% if @user.errors.any? %>
+      <div class="block">
+        <article class="message is-danger">
+          <div class="message-header">
+            <p>Errors:</p>
+          </div>
+          <div class="message-body content">
+            <ul class="mt-0">
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </article>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :email, class: "label" %>
+      <div class="control">
+        <%= form.email_field :email, required: true, class: "input", placeholder: "Email" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :password, class: "label" %>
+      <div class="control">
+        <%= form.password_field :password, required: true, class: "input", placeholder: "Password" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :password_confirmation, class: "label" %>
+      <div class="control">
+        <%= form.password_field :password_confirmation, required: true, class: "input", placeholder: "Re-enter Password" %>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <%= form.submit "Submit", class: "button is-link" %>
+      </div>
+      <div class="control">
+        <%= link_to "Cancel", root_path, class: "button is-link is-light" %>
+      </div>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :email %>
-    <%= form.email_field :email, required: true %>
-  </div>
-
-  <div>
-    <%= form.label :password %>
-    <%= form.password_field :password, required: true %>
-  </div>
-
-  <div>
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, required: true %>
-  </div>
-
-  <div>
-    <%= form.submit "Register" %>
-  </div>
-<% end %>
-
+</section>

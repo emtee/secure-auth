@@ -7,9 +7,19 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
+    <!-- Importing Bulma from CDN directly to save time and quickly add some neat UI components -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: "commons/navbar" %>
+    <%= render partial: "commons/flash_messages" %>
+    <div class="container is-fluid">
+      <div class="columns">
+        <div class="column is-two-fifths">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,22 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <%= link_to "Home", root_path, class: "navbar-item is-size-4 has-text-weight-semibold" %>
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <% if user_signed_in? %>
+            <%= link_to "Update Password", "#", class: "button is-light" %>
+            <%= button_to "Sign Out", "#", session_path, method: :delete, class: "button is-warning" %>
+          <% else %>
+            <%= link_to new_registration_path, class: "button is-primary" do  %>
+              <strong>Sign up</strong>
+            <% end %>
+            <%= link_to "Log in", new_session_path, class: "button is-light" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
