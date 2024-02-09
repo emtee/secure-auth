@@ -1,0 +1,51 @@
+<section class="section">
+  <h1 class="title">Update Password</h1>
+  <%= form_with model: current_user, url: password_path(current_user) do |form| %>
+    <% if form.object.errors.any? %>
+      <div class="block">
+        <article class="message is-danger">
+          <div class="message-header">
+            <p>Errors:</p>
+          </div>
+          <div class="message-body content">
+            <ul class="mt-0">
+              <% form.object.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </article>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :password_challenge, class: "label" %>
+      <div class="control">
+        <%= form.password_field :password_challenge, required: true, class: "input", placeholder: "Current Password" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :new_password, class: "label" %>
+      <div class="control">
+        <%= form.password_field :password, required: true, class: "input", placeholder: "New Password" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :new_password_confirmation, class: "label" %>
+      <div class="control">
+        <%= form.password_field :password_confirmation, required: true, class: "input", placeholder: "Re-enter New Password" %>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <%= form.submit "Submit", class: "button is-link" %>
+      </div>
+      <div class="control">
+        <%= link_to "Cancel", root_path, class: "button is-link is-light" %>
+      </div>
+    </div>
+  <% end %>
+</section>

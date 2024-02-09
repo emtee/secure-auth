@@ -43,4 +43,8 @@ module Authentication
   def user_signed_in?
     current_user.present?
   end
+
+  def authenticate_user!
+    redirect_to root_path, alert: t("auth.restricted") unless user_signed_in?
+  end
 end

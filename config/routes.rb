@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :registrations, only: [:new, :create]
+  resources :passwords, only: [:edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

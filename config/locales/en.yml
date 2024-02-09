@@ -33,3 +33,8 @@ en:
       failure: "Invalid email or password."
     destroy:
       success: "You have been logged out!"
+  passwords:
+    update:
+      success: "Your password has been update successfully."
+  auth:
+    restricted: "Please sign in to continue."
