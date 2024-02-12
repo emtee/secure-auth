@@ -2,6 +2,21 @@
 
 SecureAuth is a robust two-factor authentication service designed to enhance the security of user accounts. It provides an additional layer of security beyond just a password, making it significantly more challenging for unauthorized users to gain access to accounts. SecureAuth includes comprehensive features such as user registration, login with two-factor authentication, and account settings management, ensuring a secure yet user-friendly experience.
 
+## Table of Contents
+
+- [SecureAuth](#secureauth)
+  - [Authentication Helpers](#authentication-helpers)
+    - [Helper Methods](#helper-methods)
+    - [Controller Methods](#controller-methods)
+    - [Usage](#usage)
+- [Development Environment Setup](#development-environment-setup)
+  - [Prerequisites](#prerequisites)
+  - [Environment Variables](#environment-variables)
+  - [Running the Application](#running-the-application)
+  - [Running Commands](#running-commands)
+- [ToDo's / Future Enhancements](#todos-future-enhancements)
+
+
 ## Authentication Helpers
 
 The application includes a custom authentication system that provides straightforward methods for managing user sessions and accessing the current user's state. These methods are similar in spirit to what you might find in Devise, a popular Rails authentication solution, but tailored specifically for our application's needs.
@@ -82,3 +97,16 @@ To run Rails or Rake commands, use `docker-compose run web` followed by your com
 docker-compose run web rails console
 docker-compose run web bundle install
 ```
+
+## ToDo's / Future Enhancements
+This section is intended to provide transparency about the current state of the project and sets expectations for what features/enhancements are coming next.
+- Feature: Mailer Integration - send emails on sign-up and forgot password
+- Feature: Implemented Forgot password
+- Refactor: Separate out Passwords Edit & User update form
+- Bug: Handle the scenario where Two factor auth is disabled and re-enabled. Currently the user is having to delete the credentials from authenticator and re-scan the QR code.
+- Feature: Hide the QR code from user once it's scanned & authenticated. 
+- Chore: Cover controller specs
+
+
+
+
