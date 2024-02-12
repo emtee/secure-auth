@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_07_213519) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_09_073427) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_213519) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "google_secret"
+    t.string "mfa_secret"
+    t.boolean "mfa_enabled", default: false
+    t.index ["mfa_secret"], name: "index_users_on_mfa_secret"
   end
 
 end

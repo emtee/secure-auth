@@ -27,6 +27,7 @@ module Authentication
 
   # Resets the Current attribute & session variable
   def sign_out
+    clear_mfa_session
     Current.user = nil
     reset_session
   end

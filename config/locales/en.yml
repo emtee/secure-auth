@@ -31,10 +31,19 @@ en:
     create:
       success: "You have logged in successfully."
       failure: "Invalid email or password."
+      proceed_with_mfa: "Please follow the instructions to setup multi-factor authentication."
     destroy:
       success: "You have been logged out!"
   passwords:
     update:
       success: "Your password has been update successfully."
+  user_mfa_sessions:
+    create:
+      success: "You have logged in successfully."
+      failure: "Please enter a valid code."
+  users:
+    update:
+      success: "Two-factor authentication preference was updated."
+      failure: "Two-factor authentication prefernece was not saved."
   auth:
     restricted: "Please sign in to continue."

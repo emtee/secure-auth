@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "3.2.3"
 
 gem "bcrypt", "~> 3.1"
+gem "google-authenticator-rails", "~> 3.3"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "rails", "~> 7.1.3"
