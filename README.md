@@ -74,10 +74,9 @@ Create a `.env` file in the project root with the following variables:
 
 - `DB_USERNAME`: PostgreSQL username.
 - `DB_PASSWORD`: PostgreSQL password.
-- `DB_NAME`: Database name for development.
-- `DB_HOST`: Host for DB. Set this to `db` to use the db service set in `docker-compose.yml`
+- `DB_HOST`: Host for database. Set this to `db` to use the db service set in `docker-compose.yml`
 - `DEV_DB_NAME`: Name of your dev database, eg: secureauth_development
-- `TEST_DB_NAME`: Name of your dev database, eg: secureauth_test
+- `TEST_DB_NAME`: Name of your test database, eg: secureauth_test
 
 
 ### Running the Application
