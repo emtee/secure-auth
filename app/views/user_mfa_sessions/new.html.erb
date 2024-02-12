@@ -1,0 +1,29 @@
+<section class="section">
+  <h1 class="title">Two-Factor Authentication</h1>
+  <div class="block">
+    <div>1. Please scan the QR code below with your authenticator app
+      <span class="is-italic has-ext-weight-light">(skip this step if already completed)</span>.</div>
+    <figure class="image is-128x128">
+      <%= image_tag current_user.google_qr_uri %>
+    </figure>
+  </div>
+  <div class="block">
+    <div class="mb-4">
+      2. Enter the code from your authenticator app. <br>
+      <span class="is-italic has-ext-weight-light">Note: If the code doesn't work, try deleting the authenticator & scan the QR again.</span>
+    </div>
+    <%= form_tag user_mfa_sessions_path, method: :post do %>
+      <div class="field">
+        <%= label_tag :google_secret, "Google Authenticator Code", class: "label" %>
+        <div class="control">
+          <%= text_field_tag :google_secret, params[:mfa_code], class: "input", placeholder: "Enter auth code", required: true, autocomplete: :off %>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <%= submit_tag "Submit", class: "button is-link" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

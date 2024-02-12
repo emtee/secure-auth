@@ -79,6 +79,7 @@ GEM
     bcrypt (3.1.20)
     bigdecimal (3.1.6)
     builder (3.2.4)
+    chunky_png (1.4.0)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -103,6 +104,12 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-authenticator-rails (3.3.1)
+      actionpack
+      activerecord
+      rails
+      rotp (>= 5.0, < 7.0)
+      rqrcode
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -191,6 +198,11 @@ GEM
       psych (>= 4.0.0)
     reline (0.4.2)
       io-console (~> 0.5)
+    rotp (6.3.0)
+    rqrcode (2.2.0)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 1.0)
+    rqrcode_core (1.2.0)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.0)
@@ -243,6 +255,7 @@ DEPENDENCIES
   debug
   factory_bot_rails (~> 6.4.0)
   faker (~> 3.2.3)
+  google-authenticator-rails (~> 3.3)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3)
