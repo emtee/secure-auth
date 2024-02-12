@@ -14,6 +14,7 @@ SecureAuth is a robust two-factor authentication service designed to enhance the
   - [Environment Variables](#environment-variables)
   - [Running the Application](#running-the-application)
   - [Running Commands](#running-commands)
+  - [Running Tests](#running-tests)
 - [ToDo's / Future Enhancements](#todos--future-enhancements)
 
 
@@ -74,6 +75,10 @@ Create a `.env` file in the project root with the following variables:
 - `DB_USERNAME`: PostgreSQL username.
 - `DB_PASSWORD`: PostgreSQL password.
 - `DB_NAME`: Database name for development.
+- `DB_HOST`: Host for DB. Set this to `db` to use the db service set in `docker-compose.yml`
+- `DEV_DB_NAME`: Name of your dev database, eg: secureauth_development
+- `TEST_DB_NAME`: Name of your dev database, eg: secureauth_test
+
 
 ### Running the Application
 
@@ -94,8 +99,22 @@ docker-compose run web rails db:create db:migrate
 To run Rails or Rake commands, use `docker-compose run web` followed by your command. For example:
 
 ```
-docker-compose run web rails console
-docker-compose run web bundle install
+docker-compose run --rm web rails console
+docker-compose run --rm web bundle install
+```
+
+### Running Tests
+
+Ensure that you have setup a test DB in the .env file and run
+
+```
+docker-compose run -e 'RAILS_ENV=test' --rm web rails db:setup
+```
+
+Then to run specs:
+
+```
+docker-compose run -e 'RAILS_ENV=test' --rm rspec
 ```
 
 ## ToDo's / Future Enhancements
@@ -104,7 +123,7 @@ This section is intended to provide transparency about the current state of the 
 - Feature: Implemented Forgot password
 - Refactor: Separate out Passwords Edit & User update form
 - Bug: Handle the scenario where Two factor auth is disabled and re-enabled. Currently the user is having to delete the credentials from authenticator and re-scan the QR code.
-- Feature: Hide the QR code from user once it's scanned & authenticated. 
+- Feature: Hide the QR code from user once it's scanned & authenticated.
 - Chore: Cover controller specs
 
 

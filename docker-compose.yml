@@ -8,8 +8,6 @@ services:
     environment:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
-
   web:
     build:
       context: .
@@ -20,7 +18,11 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@db/${DB_NAME}
+      DB_HOST: db
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DEV_DB_NAME: ${DEV_DB_NAME}
+      TEST_DB_NAME: ${TEST_DB_NAME}
     depends_on:
       - db
 
