@@ -14,7 +14,7 @@ SecureAuth is a robust two-factor authentication service designed to enhance the
   - [Environment Variables](#environment-variables)
   - [Running the Application](#running-the-application)
   - [Running Commands](#running-commands)
-- [ToDo's / Future Enhancements](#todos-future-enhancements)
+- [ToDo's / Future Enhancements](#todos--future-enhancements)
 
 
 ## Authentication Helpers
