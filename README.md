@@ -2,6 +2,13 @@
 
 SecureAuth is a robust two-factor authentication service designed to enhance the security of user accounts. It provides an additional layer of security beyond just a password, making it significantly more challenging for unauthorized users to gain access to accounts. SecureAuth includes comprehensive features such as user registration, login with two-factor authentication, and account settings management, ensuring a secure yet user-friendly experience.
 
+SecureAuth uses the [google-authenticator gem](https://github.com/jaredonline/google-authenticator) to provide integration with the Google Authenticator apps for iphone & Android using a QR code based system. It implements a very basic authentication system by using just bcrypt and has_secure_password. 
+
+Things get exciting when you turn on the two-factor authentication from the user profile section of the app, which allow you to scan a QR code on your phone and add an authenticator to your Google Authenticator that will generate OTPs for you to input every time you login in.
+
+<img width="614" alt="Screenshot 2024-02-12 at 8 54 49 PM" src="https://github.com/emtee/secure-auth/assets/508351/a2cd4cb8-c231-4c54-a669-e7ba680e6e2a">
+
+
 ## Table of Contents
 
 - [SecureAuth](#secureauth)
