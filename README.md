@@ -2,6 +2,13 @@
 
 SecureAuth is a robust two-factor authentication service designed to enhance the security of user accounts. It provides an additional layer of security beyond just a password, making it significantly more challenging for unauthorized users to gain access to accounts. SecureAuth includes comprehensive features such as user registration, login with two-factor authentication, and account settings management, ensuring a secure yet user-friendly experience.
 
+SecureAuth uses the [google-authenticator gem](https://github.com/jaredonline/google-authenticator) to provide integration with the Google Authenticator apps for iphone & Android using a QR code based system. It implements a very basic authentication system by using just bcrypt and has_secure_password. 
+
+Things get exciting when you turn on the two-factor authentication from the user profile section of the app, which allow you to scan a QR code on your phone and add an authenticator to your Google Authenticator that will generate OTPs for you to input every time you login in.
+
+<img width="614" alt="Screenshot 2024-02-12 at 8 54 49 PM" src="https://github.com/emtee/secure-auth/assets/508351/a2cd4cb8-c231-4c54-a669-e7ba680e6e2a">
+
+
 ## Table of Contents
 
 - [SecureAuth](#secureauth)
@@ -14,6 +21,7 @@ SecureAuth is a robust two-factor authentication service designed to enhance the
   - [Environment Variables](#environment-variables)
   - [Running the Application](#running-the-application)
   - [Running Commands](#running-commands)
+  - [Running Tests](#running-tests)
 - [ToDo's / Future Enhancements](#todos--future-enhancements)
 
 
@@ -73,7 +81,10 @@ Create a `.env` file in the project root with the following variables:
 
 - `DB_USERNAME`: PostgreSQL username.
 - `DB_PASSWORD`: PostgreSQL password.
-- `DB_NAME`: Database name for development.
+- `DB_HOST`: Host for database. Set this to `db` to use the db service set in `docker-compose.yml`
+- `DEV_DB_NAME`: Name of your dev database, eg: secureauth_development
+- `TEST_DB_NAME`: Name of your test database, eg: secureauth_test
+
 
 ### Running the Application
 
@@ -94,8 +105,22 @@ docker-compose run web rails db:create db:migrate
 To run Rails or Rake commands, use `docker-compose run web` followed by your command. For example:
 
 ```
-docker-compose run web rails console
-docker-compose run web bundle install
+docker-compose run --rm web rails console
+docker-compose run --rm web bundle install
+```
+
+### Running Tests
+
+Ensure that you have setup a test DB in the .env file and run
+
+```
+docker-compose run -e 'RAILS_ENV=test' --rm web rails db:setup
+```
+
+Then to run specs:
+
+```
+docker-compose run -e 'RAILS_ENV=test' --rm rspec
 ```
 
 ## ToDo's / Future Enhancements
@@ -104,7 +129,7 @@ This section is intended to provide transparency about the current state of the 
 - Feature: Implemented Forgot password
 - Refactor: Separate out Passwords Edit & User update form
 - Bug: Handle the scenario where Two factor auth is disabled and re-enabled. Currently the user is having to delete the credentials from authenticator and re-scan the QR code.
-- Feature: Hide the QR code from user once it's scanned & authenticated. 
+- Feature: Hide the QR code from user once it's scanned & authenticated.
 - Chore: Cover controller specs
 
 
