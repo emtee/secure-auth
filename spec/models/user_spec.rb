@@ -59,4 +59,14 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "confirmed scope" do
+    let(:confirmed_user) { create(:user, confirmed_at: Time.current) }
+    let(:unconfirmed_user) { create(:user) }
+
+    it "includes only confirmed users" do
+      expect(User.confirmed).to eq([confirmed_user])
+      expect(User.confirmed).not_to eq([unconfirmed_user])
+    end
+  end
 end
