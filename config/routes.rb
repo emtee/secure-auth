@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/confirm/:confirmation_token', to: 'confirmations#show', as: :confirm_with_token
   resources :passwords, only: [:edit, :update]
   resources :registrations, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]

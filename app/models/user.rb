@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include Confirmable
+
   has_secure_password
   # Enable Google Authenticator
   acts_as_google_authenticated lookup_token: :mfa_secret, google_secret_column: :mfa_secret
@@ -12,6 +14,8 @@ class User < ApplicationRecord
 
   # Always remove white spaces and downcase email address
   normalizes :email, with: -> (email) { email.strip.downcase }
+
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
 
   def update_without_password(params, *options)
     if params[:password].blank? && params[:password_confirmation].blank?

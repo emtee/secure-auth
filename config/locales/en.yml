@@ -26,12 +26,12 @@ en:
               weak_password: "must include at least one lowercase letter, one uppercase letter, one digit, and one symbol, and be at least 8 characters long"
   registrations:
     create:
-      success: "You are now registered with Secure Auth. Please log in to continue."
+      success: "You are now registered with Secure Auth. Please check your email to continue."
   sessions:
     create:
       success: "You have logged in successfully."
       failure: "Invalid email or password."
-      proceed_with_mfa: "Please follow the instructions to setup multi-factor authentication."
+      proceed_with_mfa: "Please follow the instructions to continue with two-factor authentication."
     destroy:
       success: "You have been logged out!"
   passwords:
@@ -41,6 +41,10 @@ en:
     create:
       success: "You have logged in successfully."
       failure: "Please enter a valid code."
+  confirmations:
+    show:
+      success: "Your account is active. Please log in to continue."
+      failure: "Invalid email or token."
   users:
     update:
       success: "Two-factor authentication preference was updated."
