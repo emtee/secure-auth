@@ -25,6 +25,11 @@ services:
       TEST_DB_NAME: ${TEST_DB_NAME}
     depends_on:
       - db
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"  # Web interface
+      - "1025:1025"  # SMTP server
 
 volumes:
   postgres_data:

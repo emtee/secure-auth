@@ -75,6 +75,8 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    addressable (2.8.6)
+      public_suffix (>= 2.0.2, < 6.0)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.6)
@@ -116,6 +118,10 @@ GEM
     irb (1.11.1)
       rdoc
       reline (>= 0.4.2)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.9.0)
+      launchy (>= 2.2, < 3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -153,6 +159,7 @@ GEM
     pg (1.5.4)
     psych (5.1.2)
       stringio
+    public_suffix (5.0.4)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
@@ -251,11 +258,12 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1)
-  database_cleaner-active_record
+  database_cleaner-active_record (~> 2.1.0)
   debug
   factory_bot_rails (~> 6.4.0)
   faker (~> 3.2.3)
   google-authenticator-rails (~> 3.3)
+  letter_opener (~> 1.9.0)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3)

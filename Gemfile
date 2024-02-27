@@ -19,11 +19,10 @@ group :development, :test do
 end
 
 group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "letter_opener", "~> 1.9.0"
 end
 
 group :test do
-  gem "database_cleaner-active_record"
+  gem "database_cleaner-active_record", "~> 2.1.0"
   gem "shoulda-matchers", "~> 6.1.0"
 end

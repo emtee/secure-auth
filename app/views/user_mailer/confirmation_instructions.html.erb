@@ -1,0 +1,6 @@
+<h1>Welcome to SecureAuth!</h1>
+<p>You can confirm your account email through the link below:</p>
+<p>
+  <%= link_to "Confirm my account", confirm_with_token_url(confirmation_token: @user.confirmation_token) %>
+</p>
+<p>Thanks for joining and have a great day!</p>
