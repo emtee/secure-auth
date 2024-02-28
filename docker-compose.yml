@@ -25,6 +25,7 @@ services:
       TEST_DB_NAME: ${TEST_DB_NAME}
     depends_on:
       - db
+    command: bash -c "bundle install && bundle exec rails s -b 0.0.0.0"
   mailcatcher:
     image: schickling/mailcatcher
     ports:
