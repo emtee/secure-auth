@@ -2,30 +2,92 @@
 
 SecureAuth is a robust two-factor authentication service designed to enhance the security of user accounts. It provides an additional layer of security beyond just a password, making it significantly more challenging for unauthorized users to gain access to accounts.
 
-SecureAuth includes comprehensive features such as user registration, login with two-factor authentication, and account settings management, ensuring a secure yet user-friendly experience. It implements a very basic authentication system by using just bcrypt and has_secure_password. SecureAuth uses the [google-authenticator gem](https://github.com/jaredonline/google-authenticator) under the hood to provide integration with the Google Authenticator apps for iphone & Android using a QR code based system.
+For two-factor authentication, SecureAuth uses the [google-authenticator gem](https://github.com/jaredonline/google-authenticator) under the hood to provide integration with the Google Authenticator apps for iphone & Android using a QR code based system.
 
-Things get exciting when you turn on the two-factor authentication from the user profile section of the app, which allow you to scan a QR code on your phone and add an authenticator to your Google Authenticator that will generate OTPs for you to input every time you login in.
+SecureAuth implements a basic authentication system by using just bcrypt and has_secure_password. Things get exciting when you turn on the two-factor authentication from the *My profile* section of the app. By scanning a QR code with an authenticator app like Google Authenticator, users can generate one-time passwords (OTPs) for enhanced login security.
 
 <img width="614" alt="Screenshot 2024-02-12 at 8 54 49 PM" src="https://github.com/emtee/secure-auth/assets/508351/a2cd4cb8-c231-4c54-a669-e7ba680e6e2a">
-
 
 ## Table of Contents
 
 - [SecureAuth](#secureauth)
-  - [Authentication Helpers](#authentication-helpers)
+  - [Development Environment Setup](#development-environment-setup)
+    - [Environment Variables](#environment-variables)
+    - [Running the Application](#running-the-application)
+    - [Running Commands](#running-commands)
+    - [Running Tests](#running-tests)
+  - [Information](#information)
+    - [Authentication Helpers](#authentication-helpers)
     - [Helper Methods](#helper-methods)
     - [Controller Methods](#controller-methods)
     - [Usage](#usage)
-- [Development Environment Setup](#development-environment-setup)
-  - [Prerequisites](#prerequisites)
-  - [Environment Variables](#environment-variables)
-  - [Running the Application](#running-the-application)
-  - [Running Commands](#running-commands)
-  - [Running Tests](#running-tests)
 - [ToDo's / Future Enhancements](#todos--future-enhancements)
 
+## Development Environment Setup
 
-## Authentication Helpers
+### Prerequisites
+
+- Docker and Docker Compose installed.
+
+### Environment Variables
+
+Create a `.env` file in the project root with the following variables:
+
+- `SECUREAUTH_DB_USERNAME`: PostgreSQL username. eg: root
+- `SECUREAUTH_DB_PASSWORD`: PostgreSQL password. eg: str0ngPa$$
+- `SECUREAUTH_DB_HOST`: Host for database. Set this to `db` to use the db service set in `docker-compose.yml`
+- `SECUREAUTH_DEV_DB_NAME`: Name of your dev database, eg: secureauth_development
+- `SECUREAUTH_TEST_DB_NAME`: Name of your test database, eg: secureauth_test
+
+> Note: A .env file has been included in the repository for convenience, deviating from standard practice.
+
+### Running the Application
+
+1. From the project root folder, build your container:
+```
+docker-compose build
+```
+
+2. Set up the database:
+```
+docker-compose run web rails db:create db:migrate
+```
+
+3. Run the application
+```
+docker-compose up
+```
+Access the application at `http://localhost:3000`.
+
+And you can access the mail catcher at `http://localhost:1080`.
+> Note: Use the mail catcher URL to "Confirm you email address" on Signup.
+
+### Running Commands
+
+To run Rails or Rake commands, use `docker-compose run web` followed by your command. For example:
+
+```
+docker-compose run --rm web rails console
+docker-compose run --rm web bundle install
+```
+
+### Running Tests
+
+Ensure that you have setup a test DB in the .env file and run
+
+```
+docker-compose run -e 'RAILS_ENV=test' --rm web rails db:setup
+```
+
+Then to run specs:
+
+```
+docker-compose run -e 'RAILS_ENV=test' --rm rspec
+```
+
+## Information
+
+### Authentication Helpers
 
 The application includes a custom authentication system that provides straightforward methods for managing user sessions and accessing the current user's state. These methods are similar in spirit to what you might find in Devise, a popular Rails authentication solution, but tailored specifically for our application's needs.
 
@@ -69,68 +131,9 @@ redirect_to root_path, notice: 'Successfully signed out.'
 ```
 These authentication helpers and methods are designed to provide a lightweight yet secure mechanism for handling user sessions, in our application.
 
-## Development Environment Setup
-
-### Prerequisites
-
-- Docker and Docker Compose installed.
-
-### Environment Variables
-
-Create a `.env` file in the project root with the following variables:
-
-- `DB_USERNAME`: PostgreSQL username.
-- `DB_PASSWORD`: PostgreSQL password.
-- `DB_HOST`: Host for database. Set this to `db` to use the db service set in `docker-compose.yml`
-- `DEV_DB_NAME`: Name of your dev database, eg: secureauth_development
-- `TEST_DB_NAME`: Name of your test database, eg: secureauth_test
-
-
-### Running the Application
-
-1. From the project root folder, build your container:
-```
-docker-compose build
-```
-
-2. Set up the database:
-```
-docker-compose run web rails db:create db:migrate
-```
-
-3. Run the application
-```
-docker-compose up
-```
-Access the application at `http://localhost:3000`.
-And you can access the mail catcher at `http://localhost:1080`.
-
-### Running Commands
-
-To run Rails or Rake commands, use `docker-compose run web` followed by your command. For example:
-
-```
-docker-compose run --rm web rails console
-docker-compose run --rm web bundle install
-```
-
-### Running Tests
-
-Ensure that you have setup a test DB in the .env file and run
-
-```
-docker-compose run -e 'RAILS_ENV=test' --rm web rails db:setup
-```
-
-Then to run specs:
-
-```
-docker-compose run -e 'RAILS_ENV=test' --rm rspec
-```
-
 ## ToDo's / Future Enhancements
 This section is intended to provide transparency about the current state of the project and sets expectations for what features/enhancements are coming next.
-- Implement expiration mechanism for Confimation tokens
+- Implement expiration mechanism for Signup confimation email tokens
 - Implement "Resend confirmation email" feature
 - Feature: Mailer Integration - send emails on sign-up and forgot password
 - Feature: Implemented Forgot password

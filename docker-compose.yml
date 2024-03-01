@@ -2,12 +2,12 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:13
+    image: postgres:13-bullseye
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${SECUREAUTH_DB_USERNAME}
+      POSTGRES_PASSWORD: ${SECUREAUTH_DB_PASSWORD}
   web:
     build:
       context: .
@@ -18,11 +18,11 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_HOST: db
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DEV_DB_NAME: ${DEV_DB_NAME}
-      TEST_DB_NAME: ${TEST_DB_NAME}
+      DB_HOST: ${SECUREAUTH_DB_HOST}
+      DB_USERNAME: ${SECUREAUTH_DB_USERNAME}
+      DB_PASSWORD: ${SECUREAUTH_DB_PASSWORD}
+      DEV_DB_NAME: ${SECUREAUTH_DEV_DB_NAME}
+      TEST_DB_NAME: ${SECUREAUTH_TEST_DB_NAME}
     depends_on:
       - db
     command: bash -c "bundle install && bundle exec rails s -b 0.0.0.0"
