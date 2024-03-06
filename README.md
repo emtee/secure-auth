@@ -27,9 +27,10 @@ SecureAuth implements a basic authentication system by using just bcrypt and has
 
 ### Prerequisites
 
-- Docker and Docker Compose installed.
+#### Docker
+- Ensure you have `Docker` and `Docker Compose` installed on your machine.
 
-### Environment Variables
+#### Environment Variables
 
 Create a `.env` file in the project root with the following variables:
 
@@ -38,8 +39,6 @@ Create a `.env` file in the project root with the following variables:
 - `SECUREAUTH_DB_HOST`: Host for database. Set this to `db` to use the db service set in `docker-compose.yml`
 - `SECUREAUTH_DEV_DB_NAME`: Name of your dev database, eg: secureauth_development
 - `SECUREAUTH_TEST_DB_NAME`: Name of your test database, eg: secureauth_test
-
-> Note: A .env file has been included in the repository for convenience, deviating from standard practice.
 
 ### Running the Application
 
