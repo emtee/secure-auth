@@ -32,6 +32,7 @@ en:
       success: "You have logged in successfully."
       failure: "Invalid email or password."
       proceed_with_mfa: "Please follow the instructions to continue with two-factor authentication."
+      unconfirmed: "Please confirm you email address to log in."
     destroy:
       success: "You have been logged out!"
   passwords:
